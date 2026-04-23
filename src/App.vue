@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
-import Navbar      from './components/Navbar.vue'
-import Hero        from './components/Hero.vue'
-import Chronicle   from './components/Chronicle.vue'
-import Aspects     from './components/Aspects.vue'
-import Ecosystem   from './components/Ecosystem.vue'
-import Manifesto   from './components/Manifesto.vue'
-import FooterSection from './components/FooterSection.vue'
-import StarField   from './components/StarField.vue'
+import { ref, onMounted, onUnmounted, watch } from 'vue'
+import { RouterView } from 'vue-router'
+import Navbar       from './components/Navbar.vue'
+import StarField    from './components/StarField.vue'
+import SearchModal  from './components/SearchModal.vue'
 
-const isDark = ref(true)
+const isDark     = ref(true)
+const searchOpen = ref(false)
 
 onMounted(() => {
   isDark.value = localStorage.getItem('vigil-theme') !== 'light'
   applyTheme(isDark.value)
+  window.addEventListener('keydown', onGlobalKey)
 })
+
+onUnmounted(() => window.removeEventListener('keydown', onGlobalKey))
 
 watch(isDark, val => {
   localStorage.setItem('vigil-theme', val ? 'dark' : 'light')
@@ -24,19 +24,24 @@ watch(isDark, val => {
 function applyTheme(dark: boolean) {
   document.documentElement.classList.toggle('dark', dark)
 }
+
+function onGlobalKey(e: KeyboardEvent) {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+    e.preventDefault()
+    searchOpen.value = true
+  }
+}
 </script>
 
 <template>
   <div class="relative min-h-screen overflow-x-hidden">
     <StarField />
-    <Navbar :isDark="isDark" @toggle-theme="isDark = !isDark" />
-    <main class="relative z-10">
-      <Hero />
-      <Chronicle />
-      <Aspects />
-      <Ecosystem />
-      <Manifesto />
-    </main>
-    <FooterSection />
+    <Navbar
+      :isDark="isDark"
+      @toggle-theme="isDark = !isDark"
+      @open-search="searchOpen = true"
+    />
+    <RouterView />
+    <SearchModal v-if="searchOpen" @close="searchOpen = false" />
   </div>
 </template>

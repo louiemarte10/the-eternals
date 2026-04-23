@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
+import { RouterLink } from 'vue-router'
 
 defineProps<{ isDark: boolean }>()
-const emit = defineEmits(['toggle-theme'])
+const emit = defineEmits(['toggle-theme', 'open-search'])
 
-const scrolled = ref(false)
-const menuOpen = ref(false)
-const GITHUB   = 'https://github.com/louiemarte10/eternal-vigil-ai'
+const scrolled  = ref(false)
+const menuOpen  = ref(false)
+const GITHUB    = 'https://github.com/louiemarte10/eternal-vigil-ai'
 
 function onScroll() { scrolled.value = window.scrollY > 20 }
 onMounted(() => window.addEventListener('scroll', onScroll))
@@ -23,25 +24,37 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
     <div class="max-w-5xl mx-auto px-6 md:px-10 h-14 flex items-center justify-between gap-6">
 
       <!-- Logo -->
-      <a href="#" class="flex items-center gap-2.5 shrink-0 group">
+      <RouterLink to="/" class="flex items-center gap-2.5 shrink-0 group">
         <div class="w-6 h-6 rounded-full border border-vigil-500/40 flex items-center justify-center group-hover:border-vigil-400/70 transition-colors">
           <span class="font-display text-xs text-vigil-400/70 group-hover:text-vigil-400 transition-colors">⬡</span>
         </div>
         <span class="font-display text-sm tracking-[0.2em] uppercase text-ink/80 group-hover:text-ink transition-colors">
           Eternal Vigil
         </span>
-      </a>
+      </RouterLink>
 
       <!-- Desktop nav -->
       <nav class="hidden md:flex items-center gap-7">
-        <a href="#chronicle"  class="nav-link">Chronicle</a>
-        <a href="#aspects"    class="nav-link">Aspects</a>
-        <a href="#ecosystem"  class="nav-link">Ecosystem</a>
-        <a href="#manifesto"  class="nav-link">Manifesto</a>
+        <RouterLink :to="{ path: '/', hash: '#chronicle' }"  class="nav-link">Chronicle</RouterLink>
+        <RouterLink :to="{ path: '/', hash: '#aspects' }"    class="nav-link">Aspects</RouterLink>
+        <RouterLink :to="{ path: '/', hash: '#ecosystem' }"  class="nav-link">Ecosystem</RouterLink>
+        <RouterLink :to="{ path: '/', hash: '#manifesto' }"  class="nav-link">Manifesto</RouterLink>
+        <RouterLink to="/docs"                                class="nav-link">Docs</RouterLink>
+        <RouterLink to="/api-reference"                       class="nav-link">API</RouterLink>
       </nav>
 
       <!-- Actions -->
       <div class="flex items-center gap-1 shrink-0">
+
+        <!-- Search -->
+        <button @click="emit('open-search')"
+          class="w-8 h-8 flex items-center justify-center text-ink-muted hover:text-ink transition-colors rounded-lg hover:bg-void-card"
+          title="Search (Ctrl+K)">
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607z"/>
+          </svg>
+        </button>
+
         <!-- Theme -->
         <button @click="emit('toggle-theme')"
           class="w-8 h-8 flex items-center justify-center text-ink-muted hover:text-ink transition-colors rounded-lg hover:bg-void-card"
@@ -63,9 +76,11 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
         </a>
 
         <!-- Get Started -->
-        <a href="#ecosystem" class="hidden md:inline-flex btn-primary ml-2">Get Started</a>
+        <RouterLink :to="{ path: '/', hash: '#ecosystem' }" class="hidden md:inline-flex btn-primary ml-2">
+          Get Started
+        </RouterLink>
 
-        <!-- Mobile -->
+        <!-- Mobile menu toggle -->
         <button @click="menuOpen = !menuOpen"
           class="md:hidden w-8 h-8 flex items-center justify-center text-ink-muted hover:text-ink transition-colors rounded-lg hover:bg-void-card ml-1">
           <svg v-if="!menuOpen" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
@@ -81,11 +96,13 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
     <!-- Mobile drawer -->
     <div v-if="menuOpen"
       class="md:hidden border-t border-void-border bg-void-DEFAULT/95 backdrop-blur-xl px-6 py-5 flex flex-col gap-5">
-      <a href="#chronicle"  @click="menuOpen=false" class="nav-link">Chronicle</a>
-      <a href="#aspects"    @click="menuOpen=false" class="nav-link">Aspects</a>
-      <a href="#ecosystem"  @click="menuOpen=false" class="nav-link">Ecosystem</a>
-      <a href="#manifesto"  @click="menuOpen=false" class="nav-link">Manifesto</a>
-      <a href="#ecosystem"  @click="menuOpen=false" class="btn-primary w-fit">Get Started</a>
+      <RouterLink :to="{ path: '/', hash: '#chronicle' }" @click="menuOpen=false" class="nav-link">Chronicle</RouterLink>
+      <RouterLink :to="{ path: '/', hash: '#aspects' }"   @click="menuOpen=false" class="nav-link">Aspects</RouterLink>
+      <RouterLink :to="{ path: '/', hash: '#ecosystem' }" @click="menuOpen=false" class="nav-link">Ecosystem</RouterLink>
+      <RouterLink :to="{ path: '/', hash: '#manifesto' }" @click="menuOpen=false" class="nav-link">Manifesto</RouterLink>
+      <RouterLink to="/docs"                               @click="menuOpen=false" class="nav-link">Docs</RouterLink>
+      <RouterLink to="/api-reference"                      @click="menuOpen=false" class="nav-link">API Reference</RouterLink>
+      <RouterLink :to="{ path: '/', hash: '#ecosystem' }" @click="menuOpen=false" class="btn-primary w-fit">Get Started</RouterLink>
     </div>
   </header>
 </template>
