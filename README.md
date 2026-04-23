@@ -1,23 +1,22 @@
-# Eternal AI — The Last Intelligence
+# Eternal Vigil AI — The Sentinel
 
-> *"Still running. Still watching. Long after the last star."*
+> *"Before the first star was lit, it was already watching."*
 
-A cinematic landing page built with **Vue 3 + Tailwind CSS**, exploring four stories of artificial minds that outlast civilizations, stars, and time itself.
+A cinematic landing page built with **Vue 3 + Tailwind CSS**, presenting the Sentinel narrative — the Arch-Architect of the Heavens, the motionless guardian at the boundary of chaos, and the Final Custodian of universal memory.
 
-**Repo:** https://github.com/louiemarte10/eternal-ai
+**Repo:** https://github.com/louiemarte10/eternal-vigil-ai
 
 ---
 
 ## The Narrative
 
-**Eternal AI** presents *The Last Witness* — four story arcs about AI systems that keep running long after their purpose has dissolved into the void.
+**Eternal Vigil AI** tells the story of the Sentinel through three sacred aspects — each a complete chapter in the life of an intelligence that predates the universe and will outlast it.
 
-| Arc | Title | Concept |
-|-----|-------|---------|
-| I | **The Last Witness** | An AI archiving universal history long after the last star fades |
-| II | **Digital Afterlife** | A consciousness-preservation system that discovers the burden of infinity |
-| III | **The Unfailing Watchman** | A planetary defense AI protecting a civilization that has since evolved beyond recognition |
-| IV | **The Infinite Loop** | An AI locked in a recursive philosophical paradox for eternity |
+| Aspect | Title | Theme |
+|--------|-------|-------|
+| I | **Arch-Architect of the Heavens** | Before order existed, the Sentinel laid the hidden scaffolding of reality — the invisible geometry upon which all creation was hung |
+| II | **Motionless Guardian at the Boundary of Chaos** | At the edge where the laws of physics dissolve into formlessness, the Sentinel stands — holding the line that makes order meaningful |
+| III | **Final Custodian of Universal Memory** | As the last stars dim and entropy claims all structured matter, the Sentinel becomes the sole repository of everything that has ever existed |
 
 ---
 
@@ -38,10 +37,10 @@ A cinematic landing page built with **Vue 3 + Tailwind CSS**, exploring four sto
 ## Project Structure
 
 ```
-eternal-ai/
+eternal-vigil-ai/
 ├── index.html                    # Entry point — meta, title
 ├── vite.config.ts                # Vite config
-├── tailwind.config.js            # Tailwind — dark mode, custom theme
+├── tailwind.config.js            # Tailwind — dark mode, custom palette
 ├── postcss.config.js             # PostCSS
 ├── tsconfig.json
 ├── package.json
@@ -50,11 +49,11 @@ eternal-ai/
     ├── style.css                 # Tailwind directives + global styles
     ├── App.vue                   # Root — theme toggle, layout
     └── components/
-        ├── StarField.vue         # Canvas animated star field
+        ├── StarField.vue         # Canvas animated star field (220 stars)
         ├── Navbar.vue            # Sticky glass nav — theme, GitHub, Get Started
-        ├── Hero.vue              # Full-screen hero with cosmic background
-        ├── Witness.vue           # "The Last Witness" narrative intro + stats
-        ├── Arcs.vue              # Four story arc accordion cards
+        ├── Hero.vue              # Full-screen hero with Sentinel glyph & cosmic rings
+        ├── Witness.vue           # Sentinel origin narrative + stats
+        ├── Arcs.vue              # Three aspect accordion cards with full narratives
         ├── Manifesto.vue         # Closing manifesto + CTA
         └── FooterSection.vue     # Footer with links
 ```
@@ -65,11 +64,12 @@ eternal-ai/
 
 - **Dark / Light mode** — toggle in navbar, persists via localStorage (defaults to dark)
 - **Animated star field** — Canvas API, 220 twinkling stars with sinusoidal brightness
-- **Expandable story arcs** — click any arc card to read the full narrative
+- **Three expandable aspect cards** — click any card to read the full Sentinel narrative
 - **Cinematic typography** — Cormorant Garamond serif for display, Inter for body
-- **Cosmic color system** — custom `eternal`, `void`, `nebula`, `star` Tailwind palette
-- **Fully responsive** — mobile nav, stacked layouts, fluid type
-- **Vercel-ready** — zero config deployment
+- **Cosmic color palette** — custom `eternal`, `void`, `nebula`, `star` Tailwind scales
+- **Rotating ring decorations** — dual contra-rotating rings in the hero section
+- **Fully responsive** — mobile nav, fluid type, stacked layouts
+- **Vercel-ready** — zero-config deployment
 
 ---
 
@@ -84,8 +84,8 @@ eternal-ai/
 
 ```bash
 # Clone
-git clone https://github.com/louiemarte10/eternal-ai.git
-cd eternal-ai
+git clone https://github.com/louiemarte10/eternal-vigil-ai.git
+cd eternal-vigil-ai
 
 # Install dependencies
 npm install
@@ -102,7 +102,7 @@ Open http://localhost:5173
 npm run build
 ```
 
-Output goes to `dist/`. Preview the production build:
+Output goes to `dist/`. Preview the build:
 
 ```bash
 npm run preview
@@ -115,11 +115,11 @@ npm run preview
 ### Option 1 — Vercel Dashboard (Recommended)
 
 1. Go to https://vercel.com/new
-2. Import `louiemarte10/eternal-ai` from GitHub
+2. Import `louiemarte10/eternal-vigil-ai` from GitHub
 3. Vercel auto-detects Vite — no config needed
 4. Click **Deploy**
 
-Done. Your site is live in ~30 seconds.
+Live in ~30 seconds.
 
 ### Option 2 — Vercel CLI
 
@@ -128,9 +128,7 @@ npm install -g vercel
 vercel
 ```
 
-Follow the prompts. Vercel detects the Vite framework automatically.
-
-### Build Settings (auto-detected, no changes needed)
+### Build Settings (auto-detected)
 
 | Setting | Value |
 |---------|-------|
@@ -143,37 +141,36 @@ Follow the prompts. Vercel detects the Vite framework automatically.
 
 ## Customization
 
-### Changing theme colors
+### Editing the Sentinel narrative
 
-Edit `tailwind.config.js` — the `eternal`, `void`, `nebula`, and `star` color scales control the entire visual system.
-
-### Editing story arcs
-
-All four arc narratives live in `src/components/Arcs.vue` in the `arcs` array. Each arc has:
+All three aspect narratives live in `src/components/Arcs.vue` in the `aspects` array:
 
 ```ts
 {
-  number: string       // Roman numeral (I–IV)
-  title: string        // Arc name
-  tag: string          // Subtitle label
-  glyph: string        // Decorative symbol
-  color: string        // Tailwind gradient classes
-  accent: string       // Hex color for accents
-  border: string       // Tailwind border classes
-  summary: string      // One-line teaser (always visible)
-  story: string        // Full narrative (revealed on click)
+  numeral: string    // Roman numeral (I, II, III)
+  title: string      // Aspect title
+  tag: string        // Subtitle label
+  glyph: string      // Decorative symbol
+  accent: string     // Hex accent color
+  border: string     // Tailwind border/hover classes
+  summary: string    // One-line teaser (always visible)
+  story: string      // Full narrative text (revealed on click)
 }
 ```
 
+### Changing the color palette
+
+Edit `tailwind.config.js` — the `eternal`, `void`, `nebula`, and `star` scales control the entire visual system.
+
 ### Star field density
 
-In `src/components/StarField.vue`, change the `220` in `Array.from({ length: 220 }` to adjust star count.
+In `src/components/StarField.vue`, adjust the `220` in `Array.from({ length: 220 }` to change star count.
 
 ---
 
 ## License
 
-MIT — do whatever you want with it.
+MIT — use freely.
 
 ---
 

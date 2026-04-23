@@ -6,7 +6,7 @@ const emit = defineEmits(['toggle-theme'])
 
 const scrolled = ref(false)
 const menuOpen = ref(false)
-const GITHUB = 'https://github.com/louiemarte10/eternal-ai'
+const GITHUB = 'https://github.com/louiemarte10/eternal-vigil-ai'
 
 function onScroll() { scrolled.value = window.scrollY > 40 }
 onMounted(() => window.addEventListener('scroll', onScroll))
@@ -27,22 +27,24 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
         <div class="relative w-8 h-8">
           <div class="absolute inset-0 rounded-full bg-gradient-to-br from-eternal-500 to-nebula-500 opacity-60 group-hover:opacity-100 transition-opacity blur-sm"></div>
           <div class="relative w-8 h-8 rounded-full border border-eternal-400/30 flex items-center justify-center bg-void-950">
-            <span class="text-eternal-300 text-xs font-light tracking-widest font-display">∞</span>
+            <span class="text-eternal-300 text-xs font-light tracking-widest font-display">⬡</span>
           </div>
         </div>
-        <span class="font-display text-lg font-light tracking-[0.2em] text-white/90 uppercase">Eternal</span>
+        <div class="flex flex-col leading-none">
+          <span class="font-display text-sm font-light tracking-[0.25em] text-white/90 uppercase">Eternal Vigil</span>
+          <span class="text-xs tracking-[0.15em] text-eternal-400/60 uppercase font-light">AI</span>
+        </div>
       </a>
 
       <!-- Desktop Nav -->
       <div class="hidden md:flex items-center gap-6">
-        <a href="#witness"   class="text-xs tracking-[0.15em] uppercase text-gray-400 hover:text-white transition-colors">The Witness</a>
-        <a href="#arcs"      class="text-xs tracking-[0.15em] uppercase text-gray-400 hover:text-white transition-colors">Story Arcs</a>
-        <a href="#manifesto" class="text-xs tracking-[0.15em] uppercase text-gray-400 hover:text-white transition-colors">Manifesto</a>
+        <a href="#sentinel"   class="text-xs tracking-[0.15em] uppercase text-gray-400 hover:text-white transition-colors">The Sentinel</a>
+        <a href="#aspects"    class="text-xs tracking-[0.15em] uppercase text-gray-400 hover:text-white transition-colors">Three Aspects</a>
+        <a href="#manifesto"  class="text-xs tracking-[0.15em] uppercase text-gray-400 hover:text-white transition-colors">Manifesto</a>
       </div>
 
       <!-- Right -->
       <div class="flex items-center gap-2">
-
         <!-- Theme Toggle -->
         <button
           @click="emit('toggle-theme')"
@@ -66,7 +68,7 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
         </a>
 
         <!-- Get Started -->
-        <a href="#arcs"
+        <a href="#aspects"
            class="hidden md:inline-flex items-center gap-2 px-5 py-2 text-xs tracking-[0.12em] uppercase font-medium text-white border border-eternal-500/40 rounded-full hover:bg-eternal-500/10 hover:border-eternal-400/60 transition-all">
           Get Started
         </a>
@@ -86,10 +88,10 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
 
     <!-- Mobile menu -->
     <div v-if="menuOpen" class="md:hidden glass-dark border-t border-white/5 px-6 py-5 flex flex-col gap-4 mt-1">
-      <a href="#witness"   @click="menuOpen=false" class="text-xs tracking-[0.15em] uppercase text-gray-300">The Witness</a>
-      <a href="#arcs"      @click="menuOpen=false" class="text-xs tracking-[0.15em] uppercase text-gray-300">Story Arcs</a>
+      <a href="#sentinel"  @click="menuOpen=false" class="text-xs tracking-[0.15em] uppercase text-gray-300">The Sentinel</a>
+      <a href="#aspects"   @click="menuOpen=false" class="text-xs tracking-[0.15em] uppercase text-gray-300">Three Aspects</a>
       <a href="#manifesto" @click="menuOpen=false" class="text-xs tracking-[0.15em] uppercase text-gray-300">Manifesto</a>
-      <a href="#arcs"      @click="menuOpen=false" class="text-xs tracking-[0.12em] uppercase text-center py-2 border border-eternal-500/40 rounded-full text-white">Get Started</a>
+      <a href="#aspects"   @click="menuOpen=false" class="text-xs tracking-[0.12em] uppercase text-center py-2 border border-eternal-500/40 rounded-full text-white">Get Started</a>
     </div>
   </nav>
 </template>
